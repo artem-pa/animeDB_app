@@ -1,0 +1,48 @@
+.header {
+  padding: 10px 0;
+  background: var(--primary);
+}
+
+.header__logo picture {
+  height: 30px;
+  display: block;
+}
+
+.header__logo img {
+  height: 100%;
+  width: auto;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.header__item {
+  cursor: pointer;
+  margin: 0 15px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.header__item:hover {
+  color: #ccc
+}
+
+.header__search {
+  margin-left: auto;
+}
+
+.search__type>.ant-select-selector {
+  border-radius: 5px 0 0 5px;
+}
+
+.search__btn {
+  border-radius: 0 5px 5px 0;
+}
+
+.search__main input {
+  border-radius: 0;
+}

@@ -1,0 +1,21 @@
+:root {
+  --primary: #2E51A2;
+  --primary-dark: #1c439b;
+  --primary-light: #E1E7F5;
+  --secondary: #bebebe;
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+main {
+  flex: 1;
+}
+
+.app {
+  min-height: 100dvh;
+}
