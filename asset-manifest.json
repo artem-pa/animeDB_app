@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/animeDB_app/static/css/main.633032b9.css",
-    "main.js": "/animeDB_app/static/js/main.4013ace6.js",
+    "main.css": "/animeDB_app/static/css/main.b5008606.css",
+    "main.js": "/animeDB_app/static/js/main.c9a59b45.js",
+    "static/media/main_poster.webp": "/animeDB_app/static/media/main_poster.42ddcca0fe3c4a2ea48f.webp",
     "static/media/logo_mob.webp": "/animeDB_app/static/media/logo_mob.af43dc54e1087cdf2f0a.webp",
     "static/media/logo.webp": "/animeDB_app/static/media/logo.8535f697286a2289f9b9.webp",
     "index.html": "/animeDB_app/index.html",
-    "main.633032b9.css.map": "/animeDB_app/static/css/main.633032b9.css.map",
-    "main.4013ace6.js.map": "/animeDB_app/static/js/main.4013ace6.js.map"
+    "main.b5008606.css.map": "/animeDB_app/static/css/main.b5008606.css.map",
+    "main.c9a59b45.js.map": "/animeDB_app/static/js/main.c9a59b45.js.map"
   },
   "entrypoints": [
-    "static/css/main.633032b9.css",
-    "static/js/main.4013ace6.js"
+    "static/css/main.b5008606.css",
+    "static/js/main.c9a59b45.js"
   ]
 }
