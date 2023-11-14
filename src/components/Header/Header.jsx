@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Flex, Dropdown, Select, Option, Input, AutoComplete } from "antd";
+import { Flex, Dropdown } from "antd";
 
 import Search from "./Search";
 import { logo, logoMob } from "../../assets/images";
@@ -9,25 +9,25 @@ import "./style.css";
 const animeMenu = [
   {
     key: "1",
-    label: <Link to="/anime/search">Anime Search</Link>,
+    label: <Link to="/search/anime">Anime Search</Link>,
   },
   {
     key: "2",
-    label: <Link to="/anime/top">Top Anime</Link>,
+    label: <Link to="/top/anime">Top Anime</Link>,
   },
   {
     key: "3",
-    label: <Link to="/anime/season">Seasonal Anime</Link>,
+    label: <Link to="/season/anime">Seasonal Anime</Link>,
   }
 ];
 const mangaMenu = [
   {
     key: "1",
-    label: <Link to="/manga/search">Manga Search</Link>,
+    label: <Link to="/search/manga">Manga Search</Link>,
   },
   {
     key: "2",
-    label: <Link to="/manga/top">Top Manga</Link>,
+    label: <Link to="/top/manga">Top Manga</Link>,
   }
 ];
 

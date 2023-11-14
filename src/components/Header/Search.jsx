@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Flex,
@@ -11,10 +11,7 @@ import {
 } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-import {
-  useGetAnimeSearchQuery,
-  useGetMangaSearchQuery,
-} from "../../services/malApi";
+import { malApi } from "../../services/malApi";
 import { normalize } from "../../helpers/helpers";
 
 let searchDelay = null;
@@ -23,8 +20,8 @@ const Search = () => {
   const [query, setQuery] = useState("");
   const [apiQuery, setApiQuery] = useState("");
   const [type, setType] = useState("all");
-  const { data: animeData } = useGetAnimeSearchQuery(apiQuery);
-  const { data: mangaData } = useGetMangaSearchQuery(apiQuery);
+  const { data: animeData } = malApi.useGetAnimeSearchQuery(apiQuery);
+  const { data: mangaData } = malApi.useGetMangaSearchQuery(apiQuery);
   const navigate = useNavigate();
 
   const getOptions = () => {
@@ -37,8 +34,14 @@ const Search = () => {
           key: "anime",
           label: (
             <Link
-              to={`/anime/search?q=${query}`}
+              to={`/search/anime?q=${query}`}
               className="search__popup-category"
+              onClick={(e) =>
+                setTimeout(() => {
+                  document.querySelector("header").click();
+                  console.log("clk");
+                }, 100)
+              }
             >
               Anime
             </Link>
@@ -57,9 +60,9 @@ const Search = () => {
             date,
           } = normalize(item.node);
           return {
-            key: "manga" + i,
+            key: "anime" + i,
             label: (
-              <Link to={`/anime/item/${id}`} className="search__item">
+              <Link to={`/anime/${id}`} className="search__item">
                 <div
                   className="left"
                   style={{ backgroundImage: main_picture }}
@@ -89,7 +92,7 @@ const Search = () => {
           key: "manga",
           label: (
             <Link
-              to={`/manga/search?q=${query}`}
+              to={`/search/manga?q=${query}`}
               className="search__popup-category"
             >
               Manga
@@ -110,7 +113,7 @@ const Search = () => {
           return {
             key: "anime" + i,
             label: (
-              <Link to={`/anime/item/${id}`} className="search__item">
+              <Link to={`/manga/${id}`} className="search__item">
                 <div
                   className="left"
                   style={{ backgroundImage: main_picture }}
@@ -142,8 +145,8 @@ const Search = () => {
 
   const handleSearch = () => {
     if (!query) return;
-    if (type === "manga") return navigate(`/manga/search?q=${query}`);
-    navigate(`/anime/search?q=${query}`);
+    if (type === "manga") return navigate(`/search/manga?q=${query}`);
+    navigate(`/search/anime?q=${query}`);
   };
 
   useEffect(() => {

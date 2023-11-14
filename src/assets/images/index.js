@@ -1,2 +1,9 @@
-export {default as logo} from './logo.webp';
-export {default as logoMob} from './logo_mob.webp';
+export { default as logo } from './logo.webp';
+export { default as logoMob } from './logo_mob.webp';
+export { default as mainPoster } from './main_poster.webp';
+export { default as mainPosterMob } from './main_poster_mob.webp';
+export { default as mainPosterBlur } from './main_poster_blur.webp';
+export { default as mainPosterMobBlur } from './main_poster_mob_blur.webp';
+export { default as error404 } from './error404.gif?3455';
+export { default as error404Static } from './error404.webp';
+export { default as placeholderImage } from './placeholder_image.webp';

@@ -1,0 +1,20 @@
+.homepage__poster img {
+  width: 100%;
+  height: auto;
+  min-height: 210px;
+}
+
+.homepage__poster .mobile {
+  display: none;
+}
+
+
+/*  */
+@media (max-width: 768px) {
+  .homepage__poster .mobile {
+    display: block;
+  }
+  .homepage__poster .desctop {
+    display: none;
+  }
+}

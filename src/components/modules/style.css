@@ -1,0 +1,24 @@
+/* PageTitle */
+
+.page-title {
+  background: var(--primary-light);
+  padding: 0 5px;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.page-title.container {
+  padding: 5px;
+  border-bottom: unset;
+}
+
+.page-title .sub {
+  color: var(--secondary-dark) !important;
+}
+
+
+/* Underscore Title */
+
+.underscore-title {
+  border-bottom: 1px solid var(--secondary);
+  font-weight: 700 !important;
+}

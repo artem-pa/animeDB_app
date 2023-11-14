@@ -3,13 +3,18 @@
   --primary-dark: #1c439b;
   --primary-light: #E1E7F5;
   --secondary: #bebebe;
+  --secondary-dark: #808080;
+}
+
+html, body {
+  font-size: 14px;
 }
 
 .container {
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 main {
@@ -18,4 +23,8 @@ main {
 
 .app {
   min-height: 100dvh;
+}
+
+.ant-image {
+  width: 100%;
 }

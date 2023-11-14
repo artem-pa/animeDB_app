@@ -1,6 +1,7 @@
 .header {
   padding: 10px 0;
   background: var(--primary);
+  overflow-x: hidden;
 }
 
 .header__logo picture {
@@ -144,9 +145,6 @@
 
 /* TEMP */
 @media (max-width: 768px) {
-  .header {
-    overflow-x: hidden;
-  }
   .header__item {
     display: none;
   }
