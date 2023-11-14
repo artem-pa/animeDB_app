@@ -10,10 +10,10 @@ const InfoItem = ({ info, ...options }) => {
         (item, i) =>
           item &&
           item[1] && (
-            <p className="anime__block-item" key={i}>
+            <div className="anime__block-item" key={i}>
               {item[0] ? <span className="title">{item[0]}: </span> : null}
               <span className="text">{item[1]}</span>
-            </p>
+            </div>
           )
       )}
     </div>

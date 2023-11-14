@@ -3,19 +3,9 @@
   margin-bottom: 50px;
 }
 
-.anime__title {
-  background: var(--primary-light);
-  padding: 0 5px;
-  border-bottom: 1px solid var(--secondary);
-}
-
 .anime__left>*,
 .anime_right>* {
   padding: 5px;
-}
-
-.anime__title-sub {
-  color: var(--secondary-dark) !important;
 }
 
 .anime__left {
@@ -147,7 +137,6 @@
 .anime__head-bottom span:not(:last-child)::after {
   content: '|';
   margin: 0 10px;
-  /* display: block  */
 }
 
 @media (max-width: 600px) {
@@ -160,4 +149,41 @@
   .anime__poster {
     text-align: center;
   }
+}
+
+/* SKELETON */
+.skeleton .anime__title {
+  width: 70%;
+  min-width: 330px;
+  height: 24px!important;
+  display: block;
+  padding-top: 5px;
+  margin-bottom: 5px;
+}
+.skeleton .anime__subtitle {
+  height: 20px !important;
+  width: 45%;
+  min-width: 330px;
+  margin-bottom: 5px;
+}
+.skeleton .anime__poster *:not(svg) {
+  width: 100%!important;
+  height: unset!important;
+  aspect-ratio: 225/316;
+  max-width: 230px;
+}
+
+.skeleton .underscore-title .title {
+  height: 25px !important;
+  width: 85%;
+  max-width: 200px;
+  margin-bottom: 5px;
+}
+.skeleton .anime__head {
+  margin-top: 25px;
+  height: 84px;
+  padding: 5px;
+}
+.skeleton .anime__head * {
+  height: 100%!important;
 }

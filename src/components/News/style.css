@@ -14,10 +14,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: initial;
+  min-height: 45px;
 }
 
 .news-info {
   line-height: 1.4;
+  margin-bottom: 10px;
 }
 
 .news-info img,

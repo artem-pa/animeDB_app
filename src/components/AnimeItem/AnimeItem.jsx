@@ -7,10 +7,14 @@ import { malApi } from "../../services/malApi";
 import { normalize } from "../../helpers/helpers";
 import { PageTitle, UnderscoreTitle } from "../modules";
 import News from "../News/News";
+import Page404 from "../Page404/Page404";
 import InfoItem from "./InfoItem";
+import AnimeSkeleton from "./AnimeSkeleton";
 import "./style.css";
 
 const AnimeItem = ({ manga }) => {
+  window.scrollTo(0,0);
+
   const { itemId } = useParams();
   const pageType = manga ? "manga" : "anime";
   const { data, isFetching, isError } = malApi.useGetAnimeInfoQuery({
@@ -76,6 +80,7 @@ const AnimeItem = ({ manga }) => {
       ],
     });
 
+    console.log(result);
     return result;
   };
 
@@ -117,17 +122,15 @@ const AnimeItem = ({ manga }) => {
       },
     ];
   };
-
   useEffect(() => {
     data && (document.title = data.title);
     data && setNData(normalize(data));
   }, [isFetching]);
 
-  if (isFetching) return "Loading...";
-  if (isError) return "ERROR!";
+  if (isError) return <Page404 />;
+  if (isFetching) return <AnimeSkeleton />;
 
   return (
-    
     <div className="anime container">
       <PageTitle title={data.title} subTitle={data?.alternative_titles?.en} />
       <Flex className="anime__content">
@@ -143,16 +146,21 @@ const AnimeItem = ({ manga }) => {
           <p className="anime__updated">
             Last updated: {new Date(data.updated_at).toUTCString().slice(5, -4)}
           </p>
+          {/* HEAD */}
           <Row className="anime__head">
-            {data.mean && <Row className="anime__head-left">
-              <Col>
-                <Col className="anime__head-score">
-                  <span className="score">score</span>
-                  <span className="number">{nData.mean}</span>
+            {data.mean && (
+              <Row className="anime__head-left">
+                <Col>
+                  <Col className="anime__head-score">
+                    <span className="score">score</span>
+                    <span className="number">{nData.mean}</span>
+                  </Col>
+                  <span className="members">
+                    {nData.num_scoring_users + " users"}
+                  </span>
                 </Col>
-                <span className="members">{nData.num_scoring_users + ' users'}</span>
-              </Col>
-            </Row>}
+              </Row>
+            )}
             <Col className="anime__head-right">
               <Row className="anime__head-top">
                 <Col>
@@ -167,15 +175,15 @@ const AnimeItem = ({ manga }) => {
               </Row>
               {manga ? (
                 <Row className="anime__head-bottom">
-                  <span>{nData.media_type}</span>
-                  <span>{nData.serialization}</span>
-                  <span>{nData.authors}</span>
+                  {nData.media_type && <span>{nData.media_type}</span>}
+                  {nData.serialization && <span>{nData.serialization}</span>}
+                  {nData.authors && <span>{nData.authors}</span>}
                 </Row>
               ) : (
                 <Row className="anime__head-bottom">
-                  <span>{nData.start_season}</span>
-                  <span>{nData.media_type}</span>
-                  <span>{nData.studios}</span>
+                  {nData.start_season && <span>{nData.start_season}</span>}
+                  {nData.media_type && <span>{nData.media_type}</span>}
+                  {nData.studios && <span>{nData.studios}</span>}
                 </Row>
               )}
             </Col>
