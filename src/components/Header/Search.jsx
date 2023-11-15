@@ -36,12 +36,6 @@ const Search = () => {
             <Link
               to={`/search/anime?q=${query}`}
               className="search__popup-category"
-              onClick={(e) =>
-                setTimeout(() => {
-                  document.querySelector("header").click();
-                  console.log("clk");
-                }, 100)
-              }
             >
               Anime
             </Link>

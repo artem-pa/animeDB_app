@@ -79,10 +79,11 @@ const Footer = () => {
         <Flex className="footer__links">
           <Link to="/">Home</Link>
           <Divider className="footer__links-divider" type="vertical" />
-          <Link to="/anime/search">Anime Search</Link>
-          <Link to="/manga/search">Manga Search</Link>
-          <Link to="/topanime">Top Anime</Link>
-          <Link to="/topmanga">Top Manga</Link>
+          <Link to="/search/anime">Anime Search</Link>
+          <Link to="/search/manga">Manga Search</Link>
+          <Link to="/top/anime">Top Anime</Link>
+          <Link to="/top/manga">Top Manga</Link>
+          <Link to="/season">Seasonal Anime</Link>
           <Link to="/news">News</Link>
         </Flex>
         <div className="footer__bottom">

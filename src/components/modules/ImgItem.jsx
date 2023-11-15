@@ -6,7 +6,7 @@ const ImgItem = ({ src, placeholder, ...options }) => {
     <Image
       {...options}
       preview={false}
-      src={src}
+      src={src ?? placeholder}
       placeholder={<Image src={placeholder} preview={false} />}
     />
   );

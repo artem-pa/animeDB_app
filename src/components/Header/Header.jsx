@@ -17,7 +17,7 @@ const animeMenu = [
   },
   {
     key: "3",
-    label: <Link to="/season/anime">Seasonal Anime</Link>,
+    label: <Link to="/season">Seasonal Anime</Link>,
   }
 ];
 const mangaMenu = [

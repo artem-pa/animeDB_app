@@ -12,11 +12,9 @@ import InfoItem from "./InfoItem";
 import AnimeSkeleton from "./AnimeSkeleton";
 import "./style.css";
 
-const AnimeItem = ({ manga }) => {
-  window.scrollTo(0,0);
+const AnimeItem = ({ pageType, itemId, manga }) => {
+  window.scrollTo(0, 0);
 
-  const { itemId } = useParams();
-  const pageType = manga ? "manga" : "anime";
   const { data, isFetching, isError } = malApi.useGetAnimeInfoQuery({
     type: pageType,
     itemId,
@@ -47,7 +45,7 @@ const AnimeItem = ({ manga }) => {
         ? [
             getItem("Type", nData.media_type),
             getItem("Volumes", nData.num_volumes),
-            getItem("Chapters", nData.num_chapters),
+            getItem("Chapters", nData.num_chapters ? nData.num_chapters : 'N/A'),
             getItem("Status", nData.status),
             getItem("Published", nData.date),
             getItem("Genres", nData.genres),
@@ -56,7 +54,7 @@ const AnimeItem = ({ manga }) => {
           ]
         : [
             getItem("Type", nData.media_type),
-            getItem("Episodes", nData.num_episodes),
+            getItem("Episodes", nData.num_episodes ? nData.num_episodes : 'N/A'),
             getItem("Status", nData.status),
             getItem("Aired", nData.date),
             getItem("Premiered", nData.start_season),
@@ -80,12 +78,11 @@ const AnimeItem = ({ manga }) => {
       ],
     });
 
-    console.log(result);
     return result;
   };
 
   const getRelated = () => {
-    const related = manga ? data.related_manga : data.related_anime;
+    const related = data["related_" + pageType];
     const result = [];
     const types = new Set();
 

@@ -6,8 +6,8 @@ const {Image, Button} = Skeleton;
 const NewsSkeleton = ({ short }) => {
   const count = Array(short ? 3 : 8).fill();
 
-  return count.map((el) => (
-    <Col className="news-item" key={1}>
+  return count.map((el,i) => (
+    <Col className="news-item" key={i}>
       <Card className="news-card">
         <Button active block style={{ height: 18 }} />
         <Button active block style={{ height: 18 }} />

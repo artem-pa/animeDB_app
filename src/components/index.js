@@ -4,3 +4,6 @@ export { default as Page404 } from './Page404/Page404';
 export { default as Footer } from './Footer/Footer';
 export { default as AnimeItem } from './AnimeItem/AnimeItem';
 export { default as News } from './News/News';
+export { default as TopAnime } from './AnimeList/TopAnime';
+export { default as SearchAnime } from './AnimeList/SearchAnime';
+export { default as SeasonAnime } from './AnimeList/SeasonAnime';

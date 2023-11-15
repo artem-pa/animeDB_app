@@ -1,0 +1,66 @@
+/* TOP ANIME */
+.topanime__tab {
+  color: #000
+}
+.ant-tabs-tab-active .topanime__tab {
+  color: var(--primary-dark)
+}
+.topanime .ant-tabs-ink-bar {
+  background:var(--primary);
+}
+.topanime .ant-tabs-nav::before {
+  border-color: var(--primary-light)
+}
+
+
+/*  */
+.season__form {
+  margin: 20px auto;
+  width: max-content;
+}
+
+
+/* ANIME LIST */
+.animelist {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+.animelist__table {
+  min-width: 750px;
+}
+.animelist .ant-table-thead .ant-table-cell {
+  background: var(--primary-dark);
+  color: #fff;;
+  padding: 10px;
+}
+
+tbody .ant-table-cell {
+  padding: 5px!important;
+}
+.animelist .ant-table-cell:not(tbody .animelist__table-title) {
+  text-align: center!important;
+}
+
+tbody .animelist__table-rank {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.animelist__table-image {
+  width: 52px;
+  height: 72px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.animelist__table-title p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: initial;
+  line-height: 1.2;
+  margin-bottom: 0;
+}

@@ -1,4 +1,4 @@
-const firstL = str => str.slice(0, 1).toUpperCase() + str.slice(1);
+export const firstL = str => str ? str.slice(0, 1).toUpperCase() + str.slice(1) : null;
 const removeUnder = str => str.split('_').map(e => firstL(e)).join(' ');
 
 export const normalize = (data) => {
@@ -9,8 +9,12 @@ export const normalize = (data) => {
     switch (key) {
       case 'main_picture':
         result[key] = `url(${data[key].medium ?? data[key].large})`;
+        result.picture_url = data[key]?.medium || data[key]?.large;
         break;
       case 'media_type':
+        if (data[key] === 'one_shot') {
+          result[key] = 'One-shot'; break;
+        }
         result[key] = /^(ona|ova|tv)$/.test(data[key]) ? data[key].toUpperCase() : removeUnder(data[key]);
         break;
       case 'status':
@@ -70,3 +74,31 @@ export const normalize = (data) => {
   return result;
 }
 
+export const topRoutes = {
+  anime: {
+    all: 'All Anime',
+    airing: 'Top Airing',
+    upcoming: 'Top Upcoming',
+    tv: 'Top TV Series',
+    movie: 'Top Movies',
+    special: 'Top Specials',
+    bypopularity: 'Most Popular',
+    favorite: 'Most Favorited'
+  },
+  manga: {
+    all: 'All Manga',
+    manga: 'Top Manga',
+    novels: 'Top Light Novels',
+    oneshots: 'Top One-shots',
+    manhwa: 'Top Manhwa',
+    bypopularity: 'Most Popular',
+    favorite: 'Most Favorited'
+  }
+}
+
+export const seasonList = {
+  winter: [0, 1, 2],
+  spring: [3, 4, 5],
+  summer: [6, 7, 8],
+  fall: [9, 10, 11]
+}

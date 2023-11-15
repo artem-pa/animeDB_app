@@ -7,6 +7,7 @@ import { ImgItem, PageTitle } from "../modules";
 
 import "./style.css";
 import NewsSkeleton from "./NewsSkeleton";
+import { mokNews } from '../../helpers/mokData'
 
 const News = ({ short = false, query = "anime" }) => {
   const { data, isFetching, isError } = useGetNewsQuery(query);
@@ -15,13 +16,7 @@ const News = ({ short = false, query = "anime" }) => {
   const newsSlice = short ? [0, 6] : [0];
 
   useEffect(() => {
-    document.title = "News";
-    console.log(22);
-    console.log(
-      (isError || (data?.news && data.news.length === 0)) && (
-        <Empty style={{ marginTop: short ? 10 : 50 }} />
-      )
-    );
+    !short && (document.title = "News");
   }, []);
 
   return (
