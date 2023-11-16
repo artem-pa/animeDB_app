@@ -49,7 +49,7 @@
 }
 
 .search__popup {
-  max-width: 318px;
+  max-width: 100%;
   padding: 0;
   border-radius: 3px;
 }
@@ -143,12 +143,13 @@
   max-height: 650px!important;
 }
 
-/* TEMP */
-@media (max-width: 768px) {
-  .header__item {
-    display: none;
+@media (max-width: 700px) {
+  .header__nav {
+    justify-content: end;
   }
-  .header__search .ant-select.search__type {
-    display: none;
+  .header__search {
+    width: 100%;
+    margin-top: 10px;
+    justify-content: center;
   }
 }

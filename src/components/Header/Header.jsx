@@ -35,7 +35,7 @@ const mangaMenu = [
 const Header = () => {
   return (
     <header className="header">
-      <Flex className="container" justify="start" align="center">
+      <Flex className="container" justify="start" align="center" wrap="wrap">
         <Flex className="header__logo" align="center">
           <Link to="/">
             <picture>
@@ -52,8 +52,8 @@ const Header = () => {
             <span>Manga</span>
           </Dropdown>
           <Link className="header__item" to='/news'>News</Link>
-          <Search />
         </nav>
+        <Search />
       </Flex>
     </header>
   );

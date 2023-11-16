@@ -1,7 +1,15 @@
 import React from "react";
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useParams, useSearchParams } from "react-router-dom";
 
-import { Homepage, Page404, AnimeItem, TopAnime, News, SeasonAnime } from "../components";
+import {
+  Homepage,
+  Page404,
+  AnimeItem,
+  TopAnime,
+  News,
+  SeasonAnime,
+  SearchAnime
+} from "../components";
 import { topRoutes } from "../helpers/helpers";
 
 const isValidUrl = (pageType) => {
@@ -27,15 +35,13 @@ const TopAnimeRoute = () => {
   );
 };
 
-const SeasonAnimeRoute = () => {
-  const today = new Date();
-  const currentSeason = { year: today.getFullYear() };
-  // for (const [key, arr] of Object.entries(seasonRoutes)) {
-  //   if (arr.includes(today.getMonth())) currentSeason.season = key;
-  // }
+const SearchAnimeRoute = () => {
+  const { pageType } = useParams();
+  const [searchParam] = useSearchParams();
+  if (!pageType) return <Navigate to="anime" />;
+  if (!isValidUrl(pageType)) return <Page404 />;
 
-  
-  return <SeasonAnime {...{currentSeason, pageType: 'anime'}} />
+  return <SearchAnime pageType={pageType} query={searchParam.get('q')} />;
 };
 
 const Router = () => {
@@ -46,7 +52,7 @@ const Router = () => {
         <Route path="/:pageType/:itemId" element={<AnimeItemRoute />} />
         <Route path="/top/:pageType/:topType?" element={<TopAnimeRoute />} />
         <Route path="/season/:year?/:season?" element={<SeasonAnime />} />
-        <Route path="/search/:pageType" element={"search xcv"} />
+        <Route path="/search/:pageType?" element={<SearchAnimeRoute />} />
         <Route path="/news" element={<News />} />
 
         <Route path="*" element={<Page404 />} />
@@ -55,4 +61,4 @@ const Router = () => {
   );
 };
 
-export default Router; 
+export default Router;

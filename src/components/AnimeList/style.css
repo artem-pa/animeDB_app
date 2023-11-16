@@ -2,18 +2,36 @@
 .topanime__tab {
   color: #000
 }
+
 .ant-tabs-tab-active .topanime__tab {
   color: var(--primary-dark)
 }
+
 .topanime .ant-tabs-ink-bar {
-  background:var(--primary);
+  background: var(--primary);
 }
+
 .topanime .ant-tabs-nav::before {
   border-color: var(--primary-light)
 }
 
 
-/*  */
+/* SEARCH ANIME */
+.searchanime__search {
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.searchanime__search .ant-btn {
+  background: var(--primary) !important;
+}
+
+.searchanime__search .ant-btn:hover {
+  opacity: 0.8;
+}
+
+
+/* SEASON */
 .season__form {
   margin: 20px auto;
   width: max-content;
@@ -25,20 +43,28 @@
   overflow-x: auto;
   margin-bottom: 20px;
 }
+
 .animelist__table {
   min-width: 750px;
 }
+
+.animelist+.ant-btn:hover {
+  opacity: 0.8;
+}
+
 .animelist .ant-table-thead .ant-table-cell {
   background: var(--primary-dark);
-  color: #fff;;
+  color: #fff;
+  ;
   padding: 10px;
 }
 
 tbody .ant-table-cell {
-  padding: 5px!important;
+  padding: 5px !important;
 }
+
 .animelist .ant-table-cell:not(tbody .animelist__table-title) {
-  text-align: center!important;
+  text-align: center !important;
 }
 
 tbody .animelist__table-rank {

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Flex, Table } from "antd";
-
-import { mokList } from "../../helpers/mokData";
 import { Link } from "react-router-dom";
+import { Button, Flex, Table, Spin } from "antd";
+import millify from "millify";
+
+import { useLazyGetAnimeListFullUrlQuery } from "../../services/malApi";
+import { mokList } from "../../helpers/mokData";
 import { normalize } from "../../helpers/helpers";
 import "./style.css";
-import millify from "millify";
-import { useLazyGetAnimeListFullUrlQuery } from "../../services/malApi";
 
 const { Column } = Table;
 
@@ -26,7 +26,7 @@ const AnimeList = ({ method, methodParam, isRanking }) => {
     }
     if (isError) {
       setTableData([]);
-      setNextPageUrl(null)
+      setNextPageUrl(null);
     }
 
     return () => setTableData([]);
@@ -79,12 +79,14 @@ const AnimeList = ({ method, methodParam, isRanking }) => {
 
   return (
     <>
+      {(isFetching || nextPageFetching) && (
+        <Spin fullscreen size="large" style={{ pointerEvents: "all" }} />
+      )}
       <div className="animelist">
         <Table
           className="animelist__table"
           dataSource={tableData}
           pagination={false}
-          loading={isFetching || nextPageFetching}
         >
           {isRanking && (
             <Column
@@ -111,20 +113,20 @@ const AnimeList = ({ method, methodParam, isRanking }) => {
           <Column title="Members" dataIndex="members" key="members" />
         </Table>
       </div>
-      {isFetching || nextPageUrl && (
-        <Button
-          type="primary"
-          loading={isFetching || nextPageFetching}
-          style={{
-            background: "var(--primary)",
-            margin: "20px auto 20px",
-            display: "block",
-          }}
-          onClick={() => getNextPage(nextPageUrl)}
-        >
-          Show More
-        </Button>
-      )}
+      {isFetching ||
+        (nextPageUrl && (
+          <Button
+            type="primary"
+            style={{
+              background: "var(--primary)",
+              margin: "20px auto 20px",
+              display: "block",
+            }}
+            onClick={() => getNextPage(nextPageUrl)}
+          >
+            Show More
+          </Button>
+        ))}
     </>
   );
 };

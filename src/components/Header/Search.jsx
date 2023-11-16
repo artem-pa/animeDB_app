@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Flex,
-  Dropdown,
+  Space,
   Select,
   Option,
   Input,
   AutoComplete,
-  Button,
 } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
@@ -18,18 +17,17 @@ let searchDelay = null;
 
 const Search = () => {
   const [query, setQuery] = useState("");
-  const [apiQuery, setApiQuery] = useState("");
   const [type, setType] = useState("all");
-  const { data: animeData } = malApi.useGetAnimeSearchQuery(apiQuery);
-  const { data: mangaData } = malApi.useGetMangaSearchQuery(apiQuery);
+  const [getAnime, { data: animeData, isFetching: animeFetching }] = malApi.useLazyGetAnimeSearchQuery();
+  const [getManga, { data: mangaData, isFetching: mangaFetching }] = malApi.useLazyGetAnimeSearchQuery();
   const navigate = useNavigate();
 
   const getOptions = () => {
     if (query === "" || query.length <= 2) return [];
 
     let result = [];
-    if (animeData && mangaData && !searchDelay) {
-      if (type !== "manga") {
+    if ((!animeFetching && animeData) && (!mangaFetching && mangaData) && !searchDelay) {
+      if (type !== "manga" && animeData.data?.length) {
         result.push({
           key: "anime",
           label: (
@@ -81,7 +79,7 @@ const Search = () => {
         result.push(...animes);
       }
 
-      if (type !== "anime") {
+      if (type !== "anime" && mangaData.data?.length) {
         result.push({
           key: "manga",
           label: (
@@ -105,7 +103,7 @@ const Search = () => {
             date,
           } = normalize(item.node);
           return {
-            key: "anime" + i,
+            key: "manga" + i,
             label: (
               <Link to={`/manga/${id}`} className="search__item">
                 <div
@@ -146,8 +144,9 @@ const Search = () => {
   useEffect(() => {
     if (query !== "" && query.length > 2) {
       searchDelay = setTimeout(() => {
-        setApiQuery(query);
         searchDelay = null;
+        if (query && type !== 'manga') getAnime({pageType: 'anime', query, limit: 5})
+        if (query && type !== 'anime') getManga({pageType: 'manga', query, limit: 5})
       }, 2000);
     } else {
       clearTimeout(searchDelay);
@@ -156,9 +155,7 @@ const Search = () => {
     return () => {
       clearTimeout(searchDelay);
     };
-  }, [query, type]);
-
-  useEffect(() => {}, [animeData]);
+  }, [query]);
 
   return (
     <Flex className="header__search">
@@ -177,20 +174,16 @@ const Search = () => {
         className="search__main"
         popupClassName="search__popup"
         options={getOptions()}
-        style={{ width: 332, left: "-85px", marginRight: "-132px" }}
+        style={{ width: 365, left: -85 }}
       >
-        <Input
+        <Input.Search
           placeholder="Search Anime and Manga"
           onChange={(e) => setQuery(e.target.value)}
-          style={{ width: 200, left: "85px" }}
+          onSearch={handleSearch}
+          loading={(searchDelay || animeFetching || mangaFetching) && query.length > 2}
+          style={{ width: 280,  marginLeft: 85 }}
         />
       </AutoComplete>
-      <Button
-        className="search__btn"
-        icon={<SearchOutlined />}
-        loading={searchDelay && query.length > 2}
-        onClick={handleSearch}
-      />
     </Flex>
   );
 };

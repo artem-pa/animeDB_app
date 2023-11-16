@@ -41,7 +41,7 @@ const News = ({ short = false, query = "anime" }) => {
                   </Typography.Title>
                   <div className="news-info">
                     <ImgItem
-                      src={item.image ?? placeholderImage}
+                      src={item.image}
                       fallback={placeholderImage}
                       placeholder={placeholderImage}
                     />{" "}

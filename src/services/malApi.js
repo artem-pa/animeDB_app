@@ -28,7 +28,7 @@ export const malApi = createApi({
       query: ({year, season, limit}) => createReq(`/anime/season/${year}/${season}?limit=${limit ?? 20}&${fields.short}`)
     }),
     getAnimeSearch: builder.query({
-      query: (query) => !query ? null : createReq(`/anime?q=${query}&limit=5&${fields.short}`)
+      query: ({pageType, query, limit}) => createReq(`/${pageType}?q=${query}&limit=${limit ?? 20}&${fields.short}`)
     }),
     getMangaSearch: builder.query({
       query: (query) => !query ? null : createReq(`/manga?q=${query}&limit=5&${fields.short}`)
