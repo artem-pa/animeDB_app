@@ -4,6 +4,7 @@ import { Input, Select, Space } from "antd";
 import AnimeList from "./AnimeList";
 import { useGetAnimeSearchQuery } from "../../services/malApi";
 import { firstL } from "../../helpers/helpers";
+import { PageTitle } from "../modules";
 
 const SearchAnime = ({ pageType, query }) => {
   const [searchQuery, setSearchQuery] = useState(query);
@@ -22,6 +23,7 @@ const SearchAnime = ({ pageType, query }) => {
 
   return (
     <div className="container searchanime">
+      <PageTitle title={`${firstL(pageType)} Search`} subTitle={`${query ?? ''}`} />
       <Space.Compact
         block
         size="large"

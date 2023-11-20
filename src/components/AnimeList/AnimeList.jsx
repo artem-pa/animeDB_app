@@ -36,7 +36,6 @@ const AnimeList = ({ method, methodParam, isRanking }) => {
     if (!nextPageFetching && nextPageData && nextPageData.data) {
       addTableData(nextPageData, true);
       setNextPageUrl(nextPageData.paging?.next);
-      console.log("add");
     }
   }, [nextPageFetching]);
 

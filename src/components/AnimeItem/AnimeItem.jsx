@@ -5,7 +5,7 @@ import { PieChart } from "react-minimal-pie-chart";
 
 import { malApi } from "../../services/malApi";
 import { normalize } from "../../helpers/helpers";
-import { PageTitle, UnderscoreTitle } from "../modules";
+import { AnimeSlider, PageTitle, UnderscoreTitle } from "../modules";
 import News from "../News/News";
 import Page404 from "../Page404/Page404";
 import InfoItem from "./InfoItem";
@@ -44,8 +44,11 @@ const AnimeItem = ({ pageType, itemId, manga }) => {
       list: manga
         ? [
             getItem("Type", nData.media_type),
-            getItem("Volumes", nData.num_volumes),
-            getItem("Chapters", nData.num_chapters ? nData.num_chapters : 'N/A'),
+            getItem("Volumes", nData.num_volumes ? nData.num_volumes : 'N/A'),
+            getItem(
+              "Chapters",
+              nData.num_chapters ? nData.num_chapters : "N/A"
+            ),
             getItem("Status", nData.status),
             getItem("Published", nData.date),
             getItem("Genres", nData.genres),
@@ -54,7 +57,10 @@ const AnimeItem = ({ pageType, itemId, manga }) => {
           ]
         : [
             getItem("Type", nData.media_type),
-            getItem("Episodes", nData.num_episodes ? nData.num_episodes : 'N/A'),
+            getItem(
+              "Episodes",
+              nData.num_episodes ? nData.num_episodes : "N/A"
+            ),
             getItem("Status", nData.status),
             getItem("Aired", nData.date),
             getItem("Premiered", nData.start_season),
@@ -234,6 +240,12 @@ const AnimeItem = ({ pageType, itemId, manga }) => {
                 radius={50}
                 animate
               />
+            </div>
+          )}
+          {/* RECOMMEdNATIONS */}
+          {data.recommendations && !!data.recommendations.length && (
+            <div className="anime__block">
+             <AnimeSlider data={{data: data.recommendations}} title='Recommendations' type={pageType} />
             </div>
           )}
           {/* NEWS */}

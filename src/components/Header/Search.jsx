@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Flex,
-  Space,
-  Select,
-  Option,
-  Input,
-  AutoComplete,
-} from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import { Flex, Select, Input, AutoComplete } from "antd";
 
 import { malApi } from "../../services/malApi";
 import { normalize } from "../../helpers/helpers";
@@ -18,15 +10,18 @@ let searchDelay = null;
 const Search = () => {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("all");
-  const [getAnime, { data: animeData, isFetching: animeFetching }] = malApi.useLazyGetAnimeSearchQuery();
-  const [getManga, { data: mangaData, isFetching: mangaFetching }] = malApi.useLazyGetAnimeSearchQuery();
+  const [loading, setLoading] = useState(false)
+  const [getAnime, { data: animeData, isFetching: animeFetching }] =
+    malApi.useLazyGetAnimeSearchQuery();
+  const [getManga, { data: mangaData, isFetching: mangaFetching }] =
+    malApi.useLazyGetAnimeSearchQuery();
   const navigate = useNavigate();
 
   const getOptions = () => {
     if (query === "" || query.length <= 2) return [];
 
     let result = [];
-    if ((!animeFetching && animeData) && (!mangaFetching && mangaData) && !searchDelay) {
+    if (animeData && mangaData && !loading) {
       if (type !== "manga" && animeData.data?.length) {
         result.push({
           key: "anime",
@@ -143,16 +138,21 @@ const Search = () => {
 
   useEffect(() => {
     if (query !== "" && query.length > 2) {
+      setLoading(true)
       searchDelay = setTimeout(() => {
-        searchDelay = null;
-        if (query && type !== 'manga') getAnime({pageType: 'anime', query, limit: 5})
-        if (query && type !== 'anime') getManga({pageType: 'manga', query, limit: 5})
+        setLoading(false)
+        if (query && type !== "manga")
+          getAnime({ pageType: "anime", query, limit: 5 });
+        if (query && type !== "anime")
+          getManga({ pageType: "manga", query, limit: 5 });
       }, 2000);
     } else {
+      setLoading(false)
       clearTimeout(searchDelay);
     }
 
     return () => {
+      setLoading(false);
       clearTimeout(searchDelay);
     };
   }, [query]);
@@ -180,8 +180,10 @@ const Search = () => {
           placeholder="Search Anime and Manga"
           onChange={(e) => setQuery(e.target.value)}
           onSearch={handleSearch}
-          loading={(searchDelay || animeFetching || mangaFetching) && query.length > 2}
-          style={{ width: 280,  marginLeft: 85 }}
+          loading={
+            (loading || animeFetching || mangaFetching) && query.length > 1
+          }
+          style={{ width: 280, marginLeft: 85 }}
         />
       </AutoComplete>
     </Flex>

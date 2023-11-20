@@ -41,6 +41,7 @@
   border-left: 1px solid var(--secondary);
   padding: 5px;
   flex-grow: 1;
+  overflow: hidden;
 }
 
 .anime__updated {

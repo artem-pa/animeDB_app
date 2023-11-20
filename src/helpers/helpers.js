@@ -102,3 +102,23 @@ export const seasonList = {
   summer: [6, 7, 8],
   fall: [9, 10, 11]
 }
+
+export const getSeason = (offset = 0) => {
+  const today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth() + offset;
+  if (month < 0) {
+    year--;
+    month += 12;
+  }
+  if (month > 11) {
+    year++;
+    month -= 12;
+  }
+  let season;
+  for (const [key, arr] of Object.entries(seasonList)) {
+    if (arr.includes(month)) season = key;
+  }
+
+  return { year, season };
+};

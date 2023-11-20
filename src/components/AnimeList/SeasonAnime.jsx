@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Form, Select, InputNumber, Button } from "antd";
 
 import { useGetAnimeSeasonQuery } from "../../services/malApi";
-import { seasonList, firstL } from "../../helpers/helpers";
+import { seasonList, firstL, getSeason } from "../../helpers/helpers";
 import { PageTitle } from "../modules";
 import AnimeList from "./AnimeList";
 
@@ -13,23 +13,13 @@ const SeasonAnime = () => {
   const [formSeason, setFormSeason] = useState(season);
   const navigate = useNavigate();
 
-  const getCurrentSeason = () => {
-    const today = new Date();
-    let year = today.getFullYear();
-    let season;
-    for (const [key, arr] of Object.entries(seasonList)) {
-      if (arr.includes(today.getMonth())) season = key;
-    }
-
-    return { year, season };
-  };
-
   useEffect(() => {
     if (!season.season || !season.year) {
-      setStateSeason(getCurrentSeason());
-      setFormSeason(getCurrentSeason());
+      setStateSeason(getSeason());
+      setFormSeason(getSeason());
     } else {
       setStateSeason(season);
+      setFormSeason(season);
     }
   }, [season]);
 
@@ -60,7 +50,7 @@ const SeasonAnime = () => {
         </Select>
         <InputNumber
           min={1900}
-          max={getCurrentSeason().year + 1}
+          max={getSeason().year + 1}
           value={formSeason.year}
           onChange={(e) => setFormSeason({ ...formSeason, year: e })}
           style={{ width: 100, margin: "0 8px" }}
