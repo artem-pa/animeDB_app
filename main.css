@@ -1,0 +1,249 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  border: 1px solid red;
+}
+
+*::-webkit-scrollbar-track {
+  background: darkslategray;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: aliceblue;
+  border-radius: 10px;
+  border: 1px solid darkslategray;
+}
+
+body {
+  width: 100%;
+  min-height: 100dvh;
+  font-family: 'Poppins', sans-serif;
+  background-color: aliceblue;
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+
+#greating {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+
+  transition: 1s;
+}
+
+#greating.hide {
+  transform: rotateX(90deg);
+}
+
+.block {
+  max-width: 900px;
+  text-align: center;
+  color: darkslategray;
+}
+
+.block h1 {
+  text-transform: uppercase;
+  font-size: 3em;
+}
+
+.block h2 {
+  line-height: 2em;
+}
+
+#hello-btn {
+  font-size: 2em;
+  color: darkslategray;
+  background-color: #fff0;
+  border: none;
+  border: 2px solid darkslategray;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#hello-btn:hover {
+  transform: scale(1.1);
+}
+
+.work-list {
+  width: 90%;
+  min-height: 100%;
+  margin: auto;
+  padding: 20px 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 50px;
+  overflow-x: hidden;
+}
+
+.work {
+  display: block;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  box-shadow: 0 0 5px 5px #2f4f4f88;
+  border-radius: 10px;
+  text-decoration: none;
+  color: darkslategray;
+}
+
+.first-side {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: aliceblue;
+  position: absolute;
+  opacity: 1;
+  transform: rotateY(0deg);
+  transition: 0.4s 0.25s;
+}
+
+.first-side img:not(.star) {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: top;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.star {
+  position: absolute;
+  width: 50px;
+  top: 10px;
+  right: 10px;
+}
+
+.first-side p {
+  height: 100px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.second-side {
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: darkslategray;
+  color: aliceblue;
+  position: absolute;
+  transform: rotateY(-90deg);
+  opacity: 0;
+  transition: 0.4s 0s;
+}
+
+.info {
+  overflow-y: overlay;
+  padding-bottom: 10px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+.title+p {
+  margin-top: 15px;
+}
+
+.description {
+  font-size: 0.85em;
+  margin: 10px 0;
+}
+
+.used-tech {
+  list-style-position: inside;
+  line-height: 2em;
+}
+
+.links {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+  height: 30px;
+  position: absolute;
+  left: 10px;
+  right: 15px;
+  bottom: 5px;
+  background: linear-gradient(to top, darkslategray 70%, transparent);
+}
+
+.links a {
+  color: aliceblue;
+  text-decoration: none;
+  position: relative;
+}
+.links img {
+  vertical-align: middle;
+}
+
+a::after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: aliceblue;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  transform: scaleX(0);
+  transition: 0.3s;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+}
+
+
+
+
+.work:hover .first-side {
+  opacity: 0;
+  transform: rotateY(-90deg);
+  transition: 0.4s 0s;
+}
+
+.work:hover .second-side {
+  opacity: 1;
+  transform: rotateY(0deg);
+  transition: 0.4s 0.25s;
+}
+
+/* .work .first-side {
+  opacity: 0;
+  transform: rotateY(-90deg);
+  transition: 0.4s 0s;
+}
+
+.work .second-side {
+  opacity: 1;
+  transform: rotateY(0deg);
+  transition: 0.4s 0.25s;
+} */
