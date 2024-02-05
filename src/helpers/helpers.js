@@ -21,6 +21,9 @@ export const normalize = (data) => {
       case 'source':
         result[key] = removeUnder(data[key]);
         break;
+      case 'date': 
+        result.date = data[key] && (new Date(data[key])).toDateString().slice(4);
+        break;
       case 'start_date':
         result.year = data[key].slice(0, 4);
       case 'start_date':
@@ -69,7 +72,7 @@ export const normalize = (data) => {
     }
   }
 
-  if (!data.start_date) result.date = 'Not Yet Relised';
+  if (!data.start_date && !data.date) result.date = 'Not Yet Relised';
 
   return result;
 }

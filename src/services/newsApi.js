@@ -11,14 +11,14 @@ const apiHeaders = {
 const from_date = new Date(Date.now() - 5e9).toLocaleString('en-UK').slice(0, 10);
 const to_date = new Date(Date.now()).toLocaleString('en-UK').slice(0, 10);
 
-const createReq = (query, page) => ({ url: baseUrl, headers: apiHeaders, method: 'POST', body: { query, page, time_bounded: false, from_date, to_date, category: 'anime' } });
+const createReq = (query, page) => ({ url: baseUrl, headers: apiHeaders, method: 'POST', body: { text: query, region: 'wt-wt', max_result: 25 } });
 
 export const newsApi = createApi({
   reducerPath: 'newsApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: builder => ({
     getNews: builder.query({
-      query: (query, page = 1) => createReq(query, page)
+      query: (query) => createReq(query)
     })
   })
 })

@@ -8,6 +8,7 @@ import { ImgItem, PageTitle } from "../modules";
 import "./style.css";
 import NewsSkeleton from "./NewsSkeleton";
 import { mokNews } from '../../helpers/mokData'
+import { normalize } from "../../helpers/helpers";
 
 const News = ({ short = false, query = "anime" }) => {
   const { data, isFetching, isError } = useGetNewsQuery(query);
@@ -32,8 +33,9 @@ const News = ({ short = false, query = "anime" }) => {
 
         {data &&
           !isFetching &&
-          data.news.slice(...newsSlice).map((item, i) => (
-            <Col className="news-item" key={i}>
+          data.news.slice(...newsSlice).map((item, i) => {
+            const normItem = normalize(item);
+            return <Col className="news-item" key={i}>
               <a href={item.url} target="_blank" rel="noreferrer">
                 <Card className="news-card" hoverable>
                   <Typography.Title className="news-title" level={5}>
@@ -48,13 +50,13 @@ const News = ({ short = false, query = "anime" }) => {
                     {item.body}
                   </div>
                   <p className="news-end">
-                    {item.date} <br />
+                    {normItem.date} <br />
                     {item.source}
                   </p>
                 </Card>
               </a>
             </Col>
-          ))}
+          })}
       </Row>
     </>
   );
